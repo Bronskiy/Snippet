@@ -2,19 +2,20 @@
 
 /*
 ========================================================
-Plugin Snippet Version 2.1
+Plugin Snippet Version 2.1.1
 --------------------------------------------------------
-Copyright: David Dexter (BrilliantRetail.com) 
-License: Absolutely Freeware - Use It and Abuse It.... 
-http://www.GetEE.com 
+Copyright: David Dexter (BrilliantRetail.com)
+Modified by Nikolay Bronskiy (iconicline.com)
+License: Absolutely Freeware - Use It and Abuse It....
+http://www.GetEE.com
 --------------------------------------------------------
-This addon may be used free of charge. Should you have 
-the opportunity to use it for commercial projects then 
-I applaud you! 
+This addon may be used free of charge. Should you have
+the opportunity to use it for commercial projects then
+I applaud you!
 ========================================================
 File: pi.tweetline.php
 --------------------------------------------------------
-Purpose: Create text snippet 
+Purpose: Create text snippet
 ========================================================
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF
 ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT
@@ -28,15 +29,6 @@ OR OTHER DEALINGS IN THE SOFTWARE.
 ========================================================
 */
 
-$plugin_info = array(
-						'pi_name'			=> 'Snippet',
-						'pi_version'		=> '2.3.1',
-						'pi_author'			=> 'David Dexter',
-						'pi_author_url'		=> 'http://codesly.com/',
-						'pi_description'	=> 'Creates a simple snippet from a block of text. Please report any issues to https://github.com/dpdexter/snippet/issues',
-						'pi_usage'			=> snippet::usage()
-					);
-
 class Snippet {
 
 	var $return_data = "";
@@ -46,13 +38,13 @@ class Snippet {
 		$total      = ee()->TMPL->fetch_param('total',500);
 		$word       = ee()->TMPL->fetch_param('word',true);
 		$ellipsis   = ee()->TMPL->fetch_param('ellipsis','...');
-		
+
 		if(!is_numeric($total)){
 			$total = 500;
         }
-        
+
         $str = strip_tags(ee()->TMPL->tagdata);
-        
+
         if(strlen($str) <= $total){
     		$this->return_data = $str;
         }else{
@@ -64,12 +56,12 @@ class Snippet {
         }
     }
 
-   function truncate_str($str, $maxlen) 
-	{ 
+   function truncate_str($str, $maxlen)
+	{
 	  $newstr = substr($str, 0, $maxlen);
 	  $newstr = substr($newstr, 0, strrpos($newstr," "));
-	  return $newstr; 
-	}  
+	  return $newstr;
+	}
 
 // ----------------------------------------
 //  Plugin Usage
@@ -80,30 +72,30 @@ class Snippet {
 
 static function usage()
 {
-ob_start(); 
+ob_start();
 ?>
-Wrap a block of test in the tag pair. The plugin will strip the tags and return a preview of the block with the 
+Wrap a block of test in the tag pair. The plugin will strip the tags and return a preview of the block with the
 total number of characters as set by the 'total' parameter. If the original text was longer than the total ellipsis will
-be added. 
+be added.
 
 {exp:snippet total="100" word="true" ellipsis="..."}
 
-The block of text that you want to snippet. 
+The block of text that you want to snippet.
 
 {/exp:snippet}
 
-Parameters: 
+Parameters:
 
 * {total} = default 500
 
 * {word} = Tells the plugin if you want it to end the snippet on the last full word. Set to "true" by default.
 
-* {ellipsis} = Set to '...' by default. You can pass any text that you want appended to the end of the snippet. 
+* {ellipsis} = Set to '...' by default. You can pass any text that you want appended to the end of the snippet.
 
 <?php
 $buffer = ob_get_contents();
-	
-ob_end_clean(); 
+
+ob_end_clean();
 
 return $buffer;
 }

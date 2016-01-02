@@ -1,16 +1,17 @@
 # Snippet
+ExpressionEngine 3.0 Ready!
 
-Wrap a block of test in the tag pair. The plugin will strip the tags and return a preview of the block with the 
+Wrap a block of test in the tag pair. The plugin will strip the tags and return a preview of the block with the
 total number of characters as set by the 'total' parameter. If the original text was longer than the total ellipsis will
-be added. 
+be added.
 
 {exp:snippet total="100" word="true" ellipsis="..."}
 
-The block of text that you want to snippet. 
+The block of text that you want to snippet.
 
 {/exp:snippet}
 
-Parameters: 
+Parameters:
 
 * {total} = default 500
 
